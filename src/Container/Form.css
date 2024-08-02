@@ -1,0 +1,14 @@
+.formData {
+  position: relative;
+  left: 1rem;
+  background-color: transparent;
+  margin: 0rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  color: white;
+}
+
+.card{
+    background: none;
+}
+

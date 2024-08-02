@@ -1,0 +1,22 @@
+.cardimg{
+    /* max-height: 70vh; */
+    width: 100vw;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.imagecard{
+    width: 60px;
+    padding: 5px 5px 5px 5px;
+    background-color: #219EBC;
+    height: 60px;
+    object-fit: cover;
+}
+
+.cardposition{
+    padding: 1rem 5rem;
+}
+
+.main{
+    background-color: #024465;
+}
