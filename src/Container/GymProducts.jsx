@@ -33,18 +33,18 @@ const GymProducts = () => {
 
   return (
     <>
-    {loading && (<h1 className='text-white text-center'>Loading.....</h1>)}
+    {loading && (<h1 className='text-light text-center'>LOADING....</h1>)}
     {error && (<h1>Some thing Went Wrong</h1>)}
     <div className='row w-100 p-4'>
         {GymProducts.map((item) => {
           return(
            
               <div className="col-md-3">
-                <div key={item.id} className="card" style={{width: '18rem'}}>
-                <img src={item.image} className="card-img-top" alt="..."/>
+                <div key={item.id} className="card border-0 p-3" style={{width: '18rem'}}>
+                <img src={item.image} className="card-img-top" alt="..." style={{width: '250px', height: '250px'}}/>
                 <div className="card-body">
-                  <h5 className="card-title text-white">{item.title}</h5>
-                  <p className="card-text text-white">{item.description}</p>
+                  <h5 className="card-title text-white">{item.title.slice(0, 30)}</h5>
+                  <p className="card-text text-white">{item.description.slice(0,82)}...</p>
                   <a href="#" className="btn btn-primary">Go somewhere</a>
                 </div>
               </div>
