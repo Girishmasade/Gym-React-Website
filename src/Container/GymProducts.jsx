@@ -1,61 +1,73 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { GymProductData } from '../Utils/Data';
 
 const GymProducts = () => {
-    const [GymProducts, setGymProducts] = useState([])
-    const [error, seterror] = useState(false)
-    const [loading, setloading] = useState(false)
+  const [gymProducts, setGymProducts] = useState([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        (async() => {
-           try {
-            setloading(true)
-            seterror(false)
-             const api = await axios.get('https://fakestoreapi.com/products')
-             console.log(api)
-             setGymProducts(api.data)
-             setloading(false)
-           } catch (error) {
-            seterror(true)
-            setloading(false)
-           }
-        }) ()
-    }, [])
-    
+  useEffect(() => {
+    const fetchGymProducts = async () => {
+      try {
+        setLoading(true);
+        setError(false);
+        const apiResponse = await axios.get(GymProductData); // Replace with the correct API endpoint
+        setGymProducts(apiResponse.data);
+      } catch (err) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-// if(error){
-//    return <h1>Something is wrong</h1>
-// }
-
-// if(loading){
-//     return <h1>Loading....</h1>
-// }
+    fetchGymProducts();
+  }, []);
 
   return (
-    <>
-    {loading && (<h1 className='text-light text-center'>LOADING....</h1>)}
-    {error && (<h1>Some thing Went Wrong</h1>)}
-    <div className='row w-100 p-4'>
-        {GymProducts.map((item) => {
-          return(
-           
-              <div className="col-md-3">
-                <div key={item.id} className="card border-0 p-3" style={{width: '18rem'}}>
-                <img src={item.image} className="card-img-top" alt="..." style={{width: '250px', height: '250px'}}/>
-                <div className="card-body">
-                  <h5 className="card-title text-white">{item.title.slice(0, 30)}</h5>
-                  <p className="card-text text-white">{item.description.slice(0,82)}...</p>
-                  <a href="#" className="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-              </div>
-             
-          )
-        })}
-    </div>
-    </>
-    
-  )
-}
+    <div className="container mt-5 ">
+    {/* Loading State */}
+    {loading && (
+      <div className="text-center text-white">
+        <h1>LOADING....</h1>
+      </div>
+    )}
 
-export default GymProducts
+    {/* Error State */}
+    {error && (
+      <div className="text-center text-danger">
+        <h1>Something Went Wrong</h1>
+      </div>
+    )}
+
+    {/* Product Grid */}
+    <div className="pt-xxl-5 pb-xl-3">
+    <div className="row justify-content-center g-4">
+      {GymProductData.map((item) => (
+        <div key={item.id} className="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center ">
+          <div className="card border-0 shadow p-3 bg-body-secondary" style={{ width: '20rem' }}>
+            <img
+              src={item.image}
+              className="card-img-top img-fluid rounded"
+              alt={item.title}
+              style={{ height: '200px', objectFit: 'cover' }}
+            />
+            <div className="text-center">
+              <h5 className="card-title text-dark">{item.title}</h5>
+              <p className="card-text text-secondary">
+                {item.description.slice(0, 82)}...
+              </p>
+              <a href="#" className="btn btn-primary">
+                Learn More
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+      </div>
+    </div>
+  </div>
+  );
+};
+
+export default GymProducts;

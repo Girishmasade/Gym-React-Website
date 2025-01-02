@@ -9,7 +9,7 @@ const About = () => {
   const { TRAINERS, HIGHLIGHT } = useContext(TrainerContext);
 
   return (
-    <div>
+    <div className="pt-xl">
       
       <div className="card text-bg-dark">
         <img src={Bg3} className="cardimg" alt="..." />

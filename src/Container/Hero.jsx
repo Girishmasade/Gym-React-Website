@@ -12,7 +12,7 @@ const images = [
 function Hero() {
 
   return (
-    <>
+    <div>
     <ResponsiveMasonry
       columnsCountBreakPoints={{ 300: 1, 500: 2, 500: 3}}
     >
@@ -27,7 +27,7 @@ function Hero() {
         ))}
       </Masonry>
     </ResponsiveMasonry>
-    </>
+    </div>
   );
 }
 

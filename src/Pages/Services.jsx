@@ -3,7 +3,7 @@ import GymProducts from '../Container/GymProducts'
 
 function Services() {
   return (
-    <div>
+    <div className=''>
       <GymProducts/>
     </div>
   )
